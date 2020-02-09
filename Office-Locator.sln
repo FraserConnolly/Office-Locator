@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Office Locator", "Office Locator\Office Locator.csproj", "{FA20CCFC-368C-4189-959C-C188160F1E0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA20CCFC-368C-4189-959C-C188160F1E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA20CCFC-368C-4189-959C-C188160F1E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA20CCFC-368C-4189-959C-C188160F1E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA20CCFC-368C-4189-959C-C188160F1E0C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7974AD4B-FCD5-47D9-A991-DFC4179E151A}
+	EndGlobalSection
+EndGlobal
