@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Office_Locator
+namespace OffstageControls.OfficeLocator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for main.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class main : Window
     {
-        public MainWindow()
+        public main()
         {
             InitializeComponent( );
         }
