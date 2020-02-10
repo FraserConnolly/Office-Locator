@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OffstageControls.OfficeLocator"
         mc:Ignorable="d"
+        Closed="Window_Closed"
         Title="Office Locator" Height="450" Width="800">
     <Grid>
-        
     </Grid>
 </Window>

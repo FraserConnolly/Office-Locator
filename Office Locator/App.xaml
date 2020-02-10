@@ -1,8 +1,7 @@
-﻿<Application x:Class="OfficeLocator.App"
+﻿<Application x:Class="OffstageControls.OfficeLocator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:OfficeLocator"
-             StartupUri="main.xaml">
+             Startup="Application_Startup">
     <Application.Resources>
          
     </Application.Resources>
