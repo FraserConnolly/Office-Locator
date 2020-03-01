@@ -22,5 +22,41 @@ namespace OffstageControls.OfficeLocator.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\OneDrive\\Documents\\todo.txt")]
+        public string ToDoNotes {
+            get {
+                return ((string)(this["ToDoNotes"]));
+            }
+            set {
+                this["ToDoNotes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hello World!")]
+        public string TempString {
+            get {
+                return ((string)(this["TempString"]));
+            }
+            set {
+                this["TempString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM1")]
+        public string COMPort {
+            get {
+                return ((string)(this["COMPort"]));
+            }
+            set {
+                this["COMPort"] = value;
+            }
+        }
     }
 }

@@ -45,8 +45,8 @@ namespace OffstageControls.OfficeLocator.Logitech
             Line8
         }
 
-        private const int LOGI_LCD_COLOR_WIDTH = 320;
-        private const int LOGI_LCD_COLOR_HEIGHT = 240;
+        public static readonly int LOGI_LCD_COLOR_WIDTH = 320;
+        public static readonly int LOGI_LCD_COLOR_HEIGHT = 240;
         private const int LOGI_LCD_TYPE_COLOR = ( 0x00000002 );
 
         #region C++ Wrapper
@@ -192,6 +192,26 @@ namespace OffstageControls.OfficeLocator.Logitech
         void IDisplay.WriteTitle( string title, Color colour )
         {
             Write( title, Line.Title, colour );
+        }
+
+        public void SetImage ( Bitmap image )
+        {
+            if ( image == null )
+            {
+                throw new ArgumentNullException( "image can not be null" );
+            }
+
+            if ( image.Height == LOGI_LCD_COLOR_HEIGHT 
+                 && image.Width == LOGI_LCD_COLOR_WIDTH )
+            {
+                ImageConverter converter = new ImageConverter( );
+                byte [ ] b = image.ToByteArray( );
+                LogiLcdColorSetBackground( b );
+            }
+            else
+            {
+                throw new ArgumentException( "Image is the wrong size" );
+            }
         }
     }
 }

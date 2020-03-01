@@ -15,9 +15,16 @@ namespace OffstageControls.OfficeLocator
         public POSDisplay( string comPort )
         {
             ascii = Encoding.ASCII;
-            port = new SerialPort( comPort, baudRate: 9600, parity: Parity.None, dataBits: 8, stopBits: StopBits.One );
-            port.Open( );
-            Initalise( );
+            try
+            {
+                port = new SerialPort( comPort, baudRate: 9600, parity: Parity.None, dataBits: 8, stopBits: StopBits.One );
+                port.Open( );
+                Initalise( );
+            }
+            catch ( Exception )
+            {
+                port = null;
+            }
         }
 
         public void Initalise()

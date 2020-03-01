@@ -1,7 +1,15 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OffstageControls.OfficeLocator.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ToDoNotes" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\OneDrive\Documents\todo.txt</Value>
+    </Setting>
+    <Setting Name="TempString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hello World!</Value>
+    </Setting>
+    <Setting Name="COMPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

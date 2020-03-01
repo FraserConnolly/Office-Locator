@@ -81,6 +81,7 @@
     <None Include="Video Player.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logitech\LogitechImageGenerator.cs" />
     <Compile Include="IDisplay.cs" />
     <Compile Include="Logitech\LogitechGSDK.cs" />
     <Compile Include="main.xaml.cs">
@@ -112,7 +113,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="main.xaml">

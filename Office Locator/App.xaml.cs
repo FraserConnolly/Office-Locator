@@ -16,14 +16,7 @@ namespace OffstageControls.OfficeLocator
         private void Application_Startup ( object sender, StartupEventArgs e)
         {
             main m = new main( );
-            if ( e.Args.Length == 1 )
-            {
-                m.Start( e.Args [ 0 ] );
-            }
-            else
-            {
-                m.Start( );
-            }
+            m.Start( );
         }
         
     }

@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using OffstageControls.OfficeLocator.Logitech;
+using System.Drawing;
+using System.Timers;
+using System.Windows.Media.Imaging;
 
 namespace OffstageControls.OfficeLocator
 {
@@ -23,17 +19,18 @@ namespace OffstageControls.OfficeLocator
         private LogitechG19 keyboard;
         private Menu menu;
         POSDisplay display;
+        LogitechImageGenerator imgGen;
 
         public main()
         {
             InitializeComponent( );
         }
 
-        public void Start( string comPort = "COM1" )
+        public void Start( )
         {
             try
             {
-                display = new POSDisplay( comPort );
+                display = new POSDisplay( Properties.Settings.Default["COMPort"].ToString( ) );
             }
             catch ( Exception ex )
             {
@@ -47,6 +44,8 @@ namespace OffstageControls.OfficeLocator
             menu.AddMenuItem( "Closed for lunch", runCmd );
             menu.AddMenuItem( "Gone home", runCmd );
             keyboard.OnButtonDown += Keyboard_OnButtonDown;
+            imgGen = new LogitechImageGenerator( );
+
         }
 
         private void runCmd( string label )
@@ -83,6 +82,7 @@ namespace OffstageControls.OfficeLocator
                 default:
                     break;
             }
+            imgGen.UpdateKeyboard( );
         }
 
         private void Keyboard_OnButtonDown( LogitechG19.Button btn )
