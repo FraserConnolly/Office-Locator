@@ -9,12 +9,77 @@ namespace OffstageControls.OfficeLocator
 {
     public class Menu
     {
-        IDisplay Display;
 
-        public Menu( IDisplay display )
+        #region Static Methods
+
+        public static Menu RootMenu { get; private set; }
+        public static Menu CurrentMenu { get; private set; }
+
+        internal static void Press_Menu()
+        {
+            CurrentMenu = RootMenu;
+            CurrentMenu?.Update();
+        }
+
+
+        public static void Press_Back()
+        {
+            CurrentMenu = CurrentMenu?.ParentMenu;
+        
+            if ( CurrentMenu == null )
+            {
+                // use root menu if there was no parent menu
+                CurrentMenu = RootMenu;
+            }
+            CurrentMenu?.Update();
+
+        }
+
+        public static void Press_Ok()
+        {
+            CurrentMenu?.Ok();
+            CurrentMenu?.Update();
+        }
+
+        public static void Press_Up()
+        {
+            CurrentMenu?.Up();
+            CurrentMenu?.Update();
+        }
+
+        public static void Press_Down()
+        {
+            CurrentMenu?.Down();
+            CurrentMenu?.Update();
+        }
+
+        #endregion
+
+        public IDisplay Display { get; private set; }
+        public string MenuHeading { get; private set; }
+        public Menu ParentMenu { get; private set; } = null;
+
+        public Menu(string RootMenuHeading, IDisplay display)
         {
             Display = display;
-            items = new List<MenuItem>( );
+            MenuHeading = RootMenuHeading;
+            RootMenu = this;
+            CurrentMenu = this;
+        }
+
+        public Menu (string MenuHeading, Menu Parent)
+        {
+            if ( Parent == null || Parent.Display == null )
+            {
+                throw new ArgumentException("Parent menu can not be null.");
+            }
+            if ( string.IsNullOrWhiteSpace(MenuHeading))
+            {
+                MenuHeading = string.Empty;
+            }
+            this.MenuHeading = MenuHeading;
+            ParentMenu = Parent;
+            Display = Parent.Display;
         }
 
         #region Movement
@@ -63,7 +128,7 @@ namespace OffstageControls.OfficeLocator
 
         #endregion
 
-        public void Ok()
+        private void Ok()
         {
             SelectedItem?.Run( );
         }
@@ -83,8 +148,24 @@ namespace OffstageControls.OfficeLocator
             Update( );
         }
 
+        public void AddSubMenu(string displayName, Menu subMenu)
+        {
+            items.Add(new SubMenuItem(this, displayName, subMenu));
+
+            if (items.Count == 1)
+            {
+                SelectedItem = items.First();
+            }
+
+            Update();
+        }
+
+
         public void Update ( )
         {
+            if (this != CurrentMenu)
+                return;
+
             if (SelectedItem == null )
             {
                 SelectedItem = VisibleMenuItems.FirstOrDefault( );
@@ -98,6 +179,8 @@ namespace OffstageControls.OfficeLocator
             {
                 throw new NotImplementedException( "Too many visible menu items" );
             }
+
+            Display.WriteLine(int.MaxValue, MenuHeading, Color.Aqua);
 
             foreach ( var item in VisibleMenuItems )
             {
@@ -117,27 +200,46 @@ namespace OffstageControls.OfficeLocator
         int CountVisibleMenuItems => items.Where( i => i.IsVisible ).Count( );
         List<MenuItem> VisibleMenuItems => items.Where( i => i.IsVisible ).ToList( );
 
-        List<MenuItem> items;
+        List<MenuItem> items = new();
         private MenuItem SelectedItem { get; set; }
 
         private class MenuItem
         {
-            private Menu menu;
+            protected Menu menu { get; }
             public string DisplayString { get; private set; }
             public bool IsVisible { get; internal set; } = true;
             Action<string> run { get; }
 
-            public void Run()
+            virtual public void Run()
             {
                 run.Invoke( DisplayString );
             }
 
-            public MenuItem( Menu menu, string displayString, Action<string> run )
+            protected MenuItem(Menu menu, string displayString)
             {
                 this.menu = menu;
                 DisplayString = displayString;
+            }
+
+            public MenuItem( Menu menu, string displayString, Action<string> run ) :  this ( menu, displayString )
+            {
                 this.run = run;
             }
         }
+
+        private class SubMenuItem : MenuItem
+        {
+            private Menu subMenu;
+            public override void Run()
+            {
+                CurrentMenu = subMenu;
+            }
+
+            public SubMenuItem(Menu menu, string displayString, Menu subMenu) : base ( menu, displayString )
+            {
+                this.subMenu = subMenu;
+            }
+        }
+
     }
 }

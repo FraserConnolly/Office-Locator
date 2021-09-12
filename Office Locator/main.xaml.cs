@@ -18,7 +18,7 @@ namespace OffstageControls.OfficeLocator
     public partial class main : Window
     {
         private LogitechG19 keyboard;
-        private Menu menu;
+        private Menu rootMenu;
         POSDisplay display;
         LogitechImageGenerator imgGen;
 
@@ -38,12 +38,18 @@ namespace OffstageControls.OfficeLocator
                 MessageBox.Show( ex.Message );
             }
             keyboard = LogitechG19.GetG19Keyboard( );
-            menu = new Menu( keyboard );
-            menu.AddMenuItem( "Open", runCmd );
-            menu.AddMenuItem( "Phone", runCmd );
-            menu.AddMenuItem( "On Call", runCmd );
-            menu.AddMenuItem( "Closed for lunch", runCmd );
-            menu.AddMenuItem( "Gone home", runCmd );
+            rootMenu = new Menu( "Office Locator", keyboard );
+
+            Menu setDisplayMenu = new Menu("Set Display", rootMenu);
+            
+            setDisplayMenu.AddMenuItem( "Open", runCmd );
+            setDisplayMenu.AddMenuItem( "Phone", runCmd );
+            setDisplayMenu.AddMenuItem( "On Call", runCmd );
+            setDisplayMenu.AddMenuItem( "Closed for lunch", runCmd );
+            setDisplayMenu.AddMenuItem( "Gone home", runCmd );
+
+            rootMenu.AddSubMenu("Set Display", setDisplayMenu);
+
             keyboard.OnButtonDown += Keyboard_OnButtonDown;
             imgGen = new LogitechImageGenerator( );
 
@@ -88,17 +94,27 @@ namespace OffstageControls.OfficeLocator
 
         private void Keyboard_OnButtonDown( LogitechG19.Button btn )
         {
-            if ( btn == LogitechG19.Button.Ok )
+            switch (btn)
             {
-                menu.Ok( );
-            }
-            else if ( btn == LogitechG19.Button.Down )
-            {
-                menu.Down( );
-            }
-            else if ( btn == LogitechG19.Button.Up)
-            {
-                menu.Up( );
+                case LogitechG19.Button.Cancel:
+                case LogitechG19.Button.Left:
+                    Menu.Press_Back( );
+                    break;
+                case LogitechG19.Button.Up:
+                    Menu.Press_Up( );
+                    break;
+                case LogitechG19.Button.Down:
+                    Menu.Press_Down( );
+                    break;
+                case LogitechG19.Button.Menu:
+                    Menu.Press_Menu( );
+                    break;
+                case LogitechG19.Button.Right:
+                case LogitechG19.Button.Ok:
+                    Menu.Press_Ok( );
+                    break;
+                default:
+                    break;
             }
         }
 
