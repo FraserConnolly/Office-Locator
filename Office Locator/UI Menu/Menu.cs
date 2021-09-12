@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OffstageControls.OfficeLocator
+namespace OffstageControls.OfficeLocator.UI
 {
     public class Menu
     {
@@ -51,6 +51,15 @@ namespace OffstageControls.OfficeLocator
         {
             CurrentMenu?.Down();
             CurrentMenu?.Update();
+        }
+
+        internal static void SetCurrentMenu ( Menu menu )
+        {
+            if (menu == null)
+                throw new ArgumentNullException();
+
+            CurrentMenu = menu;
+            CurrentMenu.Update();
         }
 
         #endregion
@@ -130,27 +139,15 @@ namespace OffstageControls.OfficeLocator
 
         private void Ok()
         {
-            SelectedItem?.Run( );
+            SelectedItem?.Select( );
         }
 
         private readonly Color SelectedColour = Color.Blue;
         private readonly Color ItemColour = Color.White;
-
-        public void AddMenuItem ( string displayName, Action<string> action )
+        
+        public void AddMenuItem ( MenuItem item )
         {
-            items.Add( new MenuItem( this, displayName, action ) );
-
-            if ( items.Count == 1 )
-            {
-                SelectedItem = items.First( );
-            }
-
-            Update( );
-        }
-
-        public void AddSubMenu(string displayName, Menu subMenu)
-        {
-            items.Add(new SubMenuItem(this, displayName, subMenu));
+            items.Add(item);
 
             if (items.Count == 1)
             {
@@ -202,44 +199,6 @@ namespace OffstageControls.OfficeLocator
 
         List<MenuItem> items = new();
         private MenuItem SelectedItem { get; set; }
-
-        private class MenuItem
-        {
-            protected Menu menu { get; }
-            public string DisplayString { get; private set; }
-            public bool IsVisible { get; internal set; } = true;
-            Action<string> run { get; }
-
-            virtual public void Run()
-            {
-                run.Invoke( DisplayString );
-            }
-
-            protected MenuItem(Menu menu, string displayString)
-            {
-                this.menu = menu;
-                DisplayString = displayString;
-            }
-
-            public MenuItem( Menu menu, string displayString, Action<string> run ) :  this ( menu, displayString )
-            {
-                this.run = run;
-            }
-        }
-
-        private class SubMenuItem : MenuItem
-        {
-            private Menu subMenu;
-            public override void Run()
-            {
-                CurrentMenu = subMenu;
-            }
-
-            public SubMenuItem(Menu menu, string displayString, Menu subMenu) : base ( menu, displayString )
-            {
-                this.subMenu = subMenu;
-            }
-        }
 
     }
 }

@@ -9,6 +9,7 @@ using OffstageControls.LogitechG19SDriver;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Media.Imaging;
+using OffstageControls.OfficeLocator.UI;
 
 namespace OffstageControls.OfficeLocator
 {
@@ -37,23 +38,25 @@ namespace OffstageControls.OfficeLocator
             {
                 MessageBox.Show( ex.Message );
             }
+
             keyboard = LogitechG19.GetG19Keyboard( );
             rootMenu = new Menu( "Office Locator", keyboard );
 
             Menu setDisplayMenu = new Menu("Set Display", rootMenu);
             
-            setDisplayMenu.AddMenuItem( "Open", runCmd );
-            setDisplayMenu.AddMenuItem( "Phone", runCmd );
-            setDisplayMenu.AddMenuItem( "On Call", runCmd );
-            setDisplayMenu.AddMenuItem( "Closed for lunch", runCmd );
-            setDisplayMenu.AddMenuItem( "Gone home", runCmd );
+            setDisplayMenu.AddMenuItem( new ActionMenuItem(setDisplayMenu, "Open", runCmd, activeLabelCheck ) );
+            setDisplayMenu.AddMenuItem( new ActionMenuItem(setDisplayMenu, "Phone", runCmd, activeLabelCheck) );
+            setDisplayMenu.AddMenuItem( new ActionMenuItem(setDisplayMenu, "On Call", runCmd, activeLabelCheck) );
+            setDisplayMenu.AddMenuItem( new ActionMenuItem(setDisplayMenu, "Closed for lunch", runCmd, activeLabelCheck) );
+            setDisplayMenu.AddMenuItem( new ActionMenuItem(setDisplayMenu, "Gone home", runCmd, activeLabelCheck) );
 
-            rootMenu.AddSubMenu("Set Display", setDisplayMenu);
+            rootMenu.AddMenuItem(new SubMenuItem(rootMenu, "Set Display", setDisplayMenu) );
 
             keyboard.OnButtonDown += Keyboard_OnButtonDown;
             imgGen = new LogitechImageGenerator( );
-
         }
+
+        string currentLabel = string.Empty;
 
         private void runCmd( string label )
         {
@@ -90,6 +93,13 @@ namespace OffstageControls.OfficeLocator
                     break;
             }
             imgGen.UpdateKeyboard( );
+
+            currentLabel = label;
+        }
+
+        private bool activeLabelCheck ( string label )
+        {
+            return currentLabel == label;
         }
 
         private void Keyboard_OnButtonDown( LogitechG19.Button btn )
