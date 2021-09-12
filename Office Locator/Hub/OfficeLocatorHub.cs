@@ -1,12 +1,13 @@
-﻿using System;
-using Microsoft.AspNet.SignalR;
-using Microsoft.Owin.Hosting;
-using Owin;
-using Microsoft.Owin.Cors;
+﻿using Microsoft.AspNet.SignalR;
 
-namespace OffstageControls.OfficeLocator.SignalRHub
+namespace OffstageControls.OfficeLocator
 {
-    public class OfficeLocatorHub 
+    public class OfficeLocatorHub : Hub
     {
+        public void Send(string name, string message)
+        {
+            Clients.All.addMessage(name, message);
+        }
+
     }
 }

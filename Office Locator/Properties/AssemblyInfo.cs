@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using Microsoft.Owin;
+using OffstageControls.OfficeLocator;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -53,3 +55,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+

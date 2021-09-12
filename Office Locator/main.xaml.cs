@@ -10,6 +10,8 @@ using System.Drawing;
 using System.Timers;
 using System.Windows.Media.Imaging;
 using OffstageControls.OfficeLocator.UI;
+using Microsoft.Owin.Hosting;
+using Microsoft.Owin;
 
 namespace OffstageControls.OfficeLocator
 {
@@ -53,7 +55,11 @@ namespace OffstageControls.OfficeLocator
             rootMenu.AddMenuItem(new SubMenuItem(rootMenu, "Set Display", setDisplayMenu) );
 
             keyboard.OnButtonDown += Keyboard_OnButtonDown;
-            imgGen = new LogitechImageGenerator( );
+
+            string url = "http://192.168.1.190:8085";
+            WebApp.Start(url);
+            Console.WriteLine("Server running on {0}", url);
+
         }
 
         string currentLabel = string.Empty;

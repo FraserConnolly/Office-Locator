@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Owin;
+using Microsoft.Owin.Cors;
+using Microsoft.Owin;
 
-namespace OffstageControls.OfficeLocator.SignalRHub
+[assembly: OwinStartup(typeof(OffstageControls.OfficeLocator.Startup))]
+namespace OffstageControls.OfficeLocator
 {
     class Startup
     {
+        public void Configuration(IAppBuilder app)
+        {
+            app.UseCors(CorsOptions.AllowAll);
+            app.MapSignalR();
+        }
     }
 }
