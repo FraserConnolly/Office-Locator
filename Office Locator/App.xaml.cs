@@ -13,11 +13,10 @@ namespace OffstageControls.OfficeLocator
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup ( object sender, StartupEventArgs e)
+        private void Application_Startup(object sender, StartupEventArgs e)
         {
-            main m = new main( );
-            m.Start( );
+            main m = new main();
+            m.Start();
         }
-        
     }
 }

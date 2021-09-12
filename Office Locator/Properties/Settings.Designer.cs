@@ -25,18 +25,6 @@ namespace OffstageControls.OfficeLocator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\OneDrive\\Documents\\todo.txt")]
-        public string ToDoNotes {
-            get {
-                return ((string)(this["ToDoNotes"]));
-            }
-            set {
-                this["ToDoNotes"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
         public string COMPort {
             get {

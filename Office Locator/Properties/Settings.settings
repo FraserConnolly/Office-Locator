@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OffstageControls.OfficeLocator.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ToDoNotes" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\OneDrive\Documents\todo.txt</Value>
-    </Setting>
     <Setting Name="COMPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM4</Value>
     </Setting>

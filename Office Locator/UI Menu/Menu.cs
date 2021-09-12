@@ -142,7 +142,7 @@ namespace OffstageControls.OfficeLocator.UI
             SelectedItem?.Select( );
         }
 
-        private readonly Color SelectedColour = Color.Blue;
+        private readonly Color SelectedColour = Color.Cyan;
         private readonly Color ItemColour = Color.White;
         
         public void AddMenuItem ( MenuItem item )
@@ -197,7 +197,7 @@ namespace OffstageControls.OfficeLocator.UI
         int CountVisibleMenuItems => items.Where( i => i.IsVisible ).Count( );
         List<MenuItem> VisibleMenuItems => items.Where( i => i.IsVisible ).ToList( );
 
-        List<MenuItem> items = new();
+        List<MenuItem> items = new List<MenuItem>();
         private MenuItem SelectedItem { get; set; }
 
     }
