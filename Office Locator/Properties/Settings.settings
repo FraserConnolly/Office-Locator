@@ -5,11 +5,8 @@
     <Setting Name="ToDoNotes" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\OneDrive\Documents\todo.txt</Value>
     </Setting>
-    <Setting Name="TempString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Hello World!</Value>
-    </Setting>
     <Setting Name="COMPort" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM1</Value>
+      <Value Profile="(Default)">COM4</Value>
     </Setting>
   </Settings>
 </SettingsFile>

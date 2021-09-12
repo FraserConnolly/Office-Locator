@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using OffstageControls.OfficeLocator.Logitech;
+using OffstageControls.HPPOSDriver;
+using OffstageControls.LogitechG19SDriver;
 using System.Drawing;
 using System.Timers;
 using System.Windows.Media.Imaging;
@@ -57,12 +58,12 @@ namespace OffstageControls.OfficeLocator
             {
                 case "Open":
                     display.ClearScreen( );
-                    display.WriteAtCursor( "Fraser Connolly FHEA" );
+                    display.WriteAtCursor( "Fraser Connolly" );
                     display.WriteAtCursor( "         Open" );
                     break;
                 case "Closed for lunch":
                     display.ClearScreen( );
-                    display.WriteAtCursor( "Fraser Connolly FHEA" );
+                    display.WriteAtCursor( "Fraser Connolly" );
                     display.WriteAtPosition( "  Closed for lunch", 1, 2 );
                     break;
                 case "Gone home":

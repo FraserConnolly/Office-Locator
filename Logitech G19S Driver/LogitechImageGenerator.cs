@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OffstageControls.OfficeLocator.Logitech
+namespace OffstageControls.LogitechG19SDriver
 {
-    class LogitechImageGenerator
+    public class LogitechImageGenerator
     {
         private Bitmap bitmap;
         private Graphics g;

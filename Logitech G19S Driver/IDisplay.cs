@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace OffstageControls.OfficeLocator
+namespace OffstageControls
 {
     public interface IDisplay
     {

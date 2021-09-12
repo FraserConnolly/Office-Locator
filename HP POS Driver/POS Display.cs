@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OffstageControls.OfficeLocator
+namespace OffstageControls.HPPOSDriver
 {
     public class POSDisplay
     {

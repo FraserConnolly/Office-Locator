@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Drawing;
 
-namespace OffstageControls.OfficeLocator.Logitech
+namespace OffstageControls.LogitechG19SDriver
 {
     public class LogitechG19 : IDisplay
     {
-        private const int LOGI_LCD_COLOR_BUTTON_LEFT = ( 0x00000100 );
-        private const int LOGI_LCD_COLOR_BUTTON_RIGHT = ( 0x00000200 );
-        private const int LOGI_LCD_COLOR_BUTTON_OK = ( 0x00000400 );
-        private const int LOGI_LCD_COLOR_BUTTON_CANCEL = ( 0x00000800 );
-        private const int LOGI_LCD_COLOR_BUTTON_UP = ( 0x00001000 );
-        private const int LOGI_LCD_COLOR_BUTTON_DOWN = ( 0x00002000 );
-        private const int LOGI_LCD_COLOR_BUTTON_MENU = ( 0x00004000 );
+        private const int LOGI_LCD_COLOR_BUTTON_LEFT   = 0x00000100 ;
+        private const int LOGI_LCD_COLOR_BUTTON_RIGHT  = 0x00000200 ;
+        private const int LOGI_LCD_COLOR_BUTTON_OK     = 0x00000400 ;
+        private const int LOGI_LCD_COLOR_BUTTON_CANCEL = 0x00000800 ;
+        private const int LOGI_LCD_COLOR_BUTTON_UP     = 0x00001000 ;
+        private const int LOGI_LCD_COLOR_BUTTON_DOWN   = 0x00002000 ;
+        private const int LOGI_LCD_COLOR_BUTTON_MENU   = 0x00004000 ;
 
         public enum Button : int
         {
